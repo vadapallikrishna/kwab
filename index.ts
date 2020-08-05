@@ -1,5 +1,5 @@
 
-function createElement(name,props,children) {
+function createElement(component,props,children) {
 
 }
 
