@@ -1,7 +1,9 @@
-declare module JSX {
-	type Element = string;
-	interface IntrinsicElements {
-		[elemName: string]: any
+declare global {
+	module JSX {
+		type Element = string;
+		interface IntrinsicElements {
+			[elemName: string]: any
+		}
 	}
 
 }
