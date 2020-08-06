@@ -1,4 +1,10 @@
+declare module JSX {
+	type Element = string;
+	interface IntrinsicElements {
+		[elemName: string]: any
+	}
 
+}
 class Kwab{
     private static instance: Kwab;
     private el: HTMLElement;
