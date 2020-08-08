@@ -7,6 +7,7 @@ declare global {
 	}
 
 }
+
 class Kwab{
     private static instance: Kwab;
     private el: HTMLElement;
@@ -27,11 +28,13 @@ class Kwab{
     }
     
     getView(path: string) {
-       let { component } = this.routes.find(i => i["path"] == path);
+       let { component } = this.routes.find(i:any => i["path"] == path);
        this.el.appendChild(document.createElement(component));    
     }
 
 }
+
+
 
 window.addEventListener("popstate", function(event: any) {
       	let instance = Kwab.getInstance();
@@ -45,9 +48,21 @@ function createElement(component: any,props: any,children: any) {
 	 return el;
 }
 
+function define(name: string, html: any) {
+     class Element extends HTMLElement {
+	constructor() {
+           super();
+	   let shadowRoot = this.attachShadow({mode: "open"});
+	   let template = html();
+	   shadowRoot.appendChild(template.cloneNode(true));
+	}
+     }
+     customElements.define(name,Element);
+}
+
 function route(pathname: string, component: string) {
 	let instance = Kwab.getInstance();
 	instance.appendRoute(pathname, component);
 }
 
-export {Kwab, createElement};
+export {Kwab, define, createElement};
