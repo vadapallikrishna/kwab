@@ -32,7 +32,7 @@ class Kwab{
        	 this.el.appendChild(document.createElement(component));    
     }
 
-    mountPoint(el: HTMLElement) {
+    mountPoint(el: HTMLElement | null) {
 	this.el = el;
 	this.getView("/");
     }
@@ -65,7 +65,7 @@ function define(name: string, html: any) {
      customElements.define(name,Element);
 }
 
-function mount(el:HTMLElement) {
+function mount(el: HTMLElement | null) {
      let instance = Kwab.getInstance();
      instance.mountPoint(el);
 }
