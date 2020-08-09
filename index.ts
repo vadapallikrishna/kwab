@@ -28,7 +28,8 @@ class Kwab{
     
     getView(path: string) {
        let { component } = this.routes.find((i:any) => i["path"] == path);
-       this.el.appendChild(document.createElement(component));    
+       if(this.el)
+       	 this.el.appendChild(document.createElement(component));    
     }
 
     mountPoint(el: HTMLElement) {
