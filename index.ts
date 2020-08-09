@@ -12,14 +12,13 @@ class Kwab{
     private static instance: Kwab;
     private el: HTMLElement;
     private routes: any;
-    constructor(el: any) {
-        this.el = el;
+    constructor() {
 	this.routes = [];
     }
 
     static getInstance(): Kwab {
 	if(!Kwab.instance)
-		throw Error("no instance found");
+		Kwab.instance = new Kwab();
 	return Kwab.instance;
     }
 
@@ -28,8 +27,13 @@ class Kwab{
     }
     
     getView(path: string) {
-       let { component } = this.routes.find(i:any => i["path"] == path);
+       let { component } = this.routes.find((i:any) => i["path"] == path);
        this.el.appendChild(document.createElement(component));    
+    }
+
+    mountPoint(el: HTMLElement) {
+	this.el = el;
+	this.getView("/");
     }
 
 }
@@ -60,9 +64,20 @@ function define(name: string, html: any) {
      customElements.define(name,Element);
 }
 
+function mount(el:HTMLElement) {
+     let instance = Kwab.getInstance();
+     instance.mountPoint(el);
+}
+
 function route(pathname: string, component: string) {
 	let instance = Kwab.getInstance();
 	instance.appendRoute(pathname, component);
 }
 
-export {Kwab, define, createElement};
+export {
+	Kwab, 
+	define, 
+	createElement, 
+	mount, 
+	route
+};
