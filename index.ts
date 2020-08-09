@@ -10,7 +10,7 @@ declare global {
 
 class Kwab{
     private static instance: Kwab;
-    private el: HTMLElement;
+    private el?: HTMLElement;
     private routes: any;
     constructor() {
 	this.routes = [];
