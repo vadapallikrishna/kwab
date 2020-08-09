@@ -28,11 +28,14 @@ var Kwab = /** @class */ (function () {
     };
     Kwab.prototype.getView = function (path) {
         var component = this.routes.find(function (i) { return i["path"] == path; }).component;
-        this.el.appendChild(document.createElement(component));
+        if (this.el)
+            this.el.appendChild(document.createElement(component));
     };
     Kwab.prototype.mountPoint = function (el) {
-        this.el = el;
-        this.getView("/");
+        if (el instanceof HTMLElement) {
+            this.el = el;
+            this.getView("/");
+        }
     };
     return Kwab;
 }());

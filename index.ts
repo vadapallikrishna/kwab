@@ -33,8 +33,10 @@ class Kwab{
     }
 
     mountPoint(el: HTMLElement | null) {
-	this.el = el;
-	this.getView("/");
+	if(el instanceof HTMLElement) {
+	  this.el = el;
+	  this.getView("/");
+	}
     }
 
 }
