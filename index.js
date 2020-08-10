@@ -12,7 +12,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.route = exports.mount = exports.createElement = exports.define = exports.Kwab = void 0;
 var Kwab = /** @class */ (function () {
     function Kwab() {
@@ -52,21 +52,22 @@ function createElement(component, props, children) {
 }
 exports.createElement = createElement;
 function define(name, html) {
-    var Element = /** @class */ (function (_super) {
-        __extends(Element, _super);
-        function Element() {
+    var element = /** @class */ (function (_super) {
+        __extends(element, _super);
+        function element() {
             var _this = _super.call(this) || this;
             var shadowRoot = _this.attachShadow({ mode: "open" });
             var template = html();
             shadowRoot.appendChild(template.cloneNode(true));
             return _this;
         }
-        return Element;
+        return element;
     }(HTMLElement));
-    customElements.define(name, Element);
+    customElements.define(name, element);
 }
 exports.define = define;
 function mount(el) {
+    alert("Hello");
     var instance = Kwab.getInstance();
     instance.mountPoint(el);
 }

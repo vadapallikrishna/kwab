@@ -56,7 +56,7 @@ function createElement(component: any,props: any,children: any) {
 }
 
 function define(name: string, html: any) {
-     class Element extends HTMLElement {
+     let element = class extends HTMLElement {
 	constructor() {
            super();
 	   let shadowRoot = this.attachShadow({mode: "open"});
@@ -64,10 +64,11 @@ function define(name: string, html: any) {
 	   shadowRoot.appendChild(template.cloneNode(true));
 	}
      }
-     customElements.define(name,Element);
+     customElements.define(name,element);
 }
 
 function mount(el: HTMLElement | null) {
+     alert("Hello");
      let instance = Kwab.getInstance();
      instance.mountPoint(el);
 }
