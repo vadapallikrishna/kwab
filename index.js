@@ -41,6 +41,7 @@ var Kwab = /** @class */ (function () {
 }());
 exports.Kwab = Kwab;
 window.addEventListener("popstate", function (event) {
+    alert("Hello");
     var instance = Kwab.getInstance();
     instance.getView(window.location.pathname);
 });

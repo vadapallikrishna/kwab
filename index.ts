@@ -44,7 +44,8 @@ class Kwab{
 
 
 window.addEventListener("popstate", function(event: any) {
-      	let instance = Kwab.getInstance();
+      	alert("Hello");
+	let instance = Kwab.getInstance();
     	instance.getView(window.location.pathname);
 });
 
